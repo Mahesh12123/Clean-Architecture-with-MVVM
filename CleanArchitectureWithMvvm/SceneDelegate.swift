@@ -16,6 +16,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        
+             let apiService = APIService(token: "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiNjNhMmI4OTQ3NzA2NGJkNzk3Njg5YTA2N2RjZmZmMCIsIm5iZiI6MTczODkwNTIwMS45Mjk5OTk4LCJzdWIiOiI2N2E1OTY3MTRkNTM2Y2I5MzI2NmQ1NzAiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.z_RIbAKn-3nU77dQb8ewaloxaIxx7u_HfcmnKA0YN2o")
+             let fetchUsersUseCase = DefaultFetchUsersUseCase(apiService: apiService)
+             let searchUseCase = SearchUseCase(apiService: apiService)
+             let userListViewModel = UserListViewModel(fetchUsersUseCase: fetchUsersUseCase, searchUseCase: searchUseCase)
+             let userListViewController = UserListViewController()
+             userListViewController.viewModel = userListViewModel
+        
+        
+        let navigationController = UINavigationController(rootViewController: userListViewController)
+        if let windowScene = scene as? UIWindowScene {
+               let window = UIWindow(windowScene: windowScene)
+               window.rootViewController =  navigationController// Your RootViewController in here
+               self.window = window
+               window.makeKeyAndVisible()
+           }
+        print("New scene connected")
+        
         guard let _ = (scene as? UIWindowScene) else { return }
     }
 
@@ -24,21 +42,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This occurs shortly after the scene enters the background, or when its session is discarded.
         // Release any resources associated with this scene that can be re-created the next time the scene connects.
         // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
+        print("Scene disconnected")
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        print("Scene became active")
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
+        print("Scene will resign active")
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
+        print("Scene will enter foreground")
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
@@ -47,6 +69,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
 
         // Save changes in the application's managed object context when the application transitions to the background.
+        print("Scene entered background")
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
 
