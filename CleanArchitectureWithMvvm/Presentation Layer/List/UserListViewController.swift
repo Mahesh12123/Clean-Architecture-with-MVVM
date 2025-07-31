@@ -12,12 +12,18 @@ import SDWebImage
 
 
 class UserListViewController: UIViewController {
+    
     private let tableView = UITableView()
     var viewModel: UserListViewModel!
     private var cancellables = Set<AnyCancellable>()
     let activityIndicator = UIActivityIndicatorView(style: .large)
     private let searchBar = UISearchBar()
+    
+    let cache = NSCache<NSURL, UIImage>()
     @Published var isSearching: Bool = false
+    
+    var downloadimgDon:((String)->Void)?
+    
     
     private lazy var sortSegmentedControl: UISegmentedControl = {
          let control = UISegmentedControl(items: ["All","Name", "ID"])
@@ -38,10 +44,86 @@ class UserListViewController: UIViewController {
         setupUI()
         setupNavigationBar()
         setupActivityIndicator()
-     //   SearchviewModel?.search(query: "Mufasa")
-        
+        //   SearchviewModel?.search(query: "Mufasa")
         self.navigationItem.title = "New Movies List "
+        
+        
+//        performanceTask {
+//            print("i am second Task")
+//        }
+        
+//        DownLoadStart { data in
+//            print("download blala \(data)")
+//        }
+        
+        
+//        if let imageurl = URL(string: "https://firebasestorage.googleapis.com/v0/b/mentalmedit12.appspot.com/o/MeditionImageList%2FA%20Single.png?alt=media&token=3c5e657f-24b7-408d-992b-f716c9ac2a10") {
+//            DownloadImge(imgUrl: imageurl) { image in
+//                if let img = image {
+//                    print("image download \(img)")
+//                }else{
+//                    
+//                    print("image not Downlload ")
+//                }
+//                
+//            }
+//            
+//            
+//        }
+        
     }
+    
+//    func performanceTask(with closer: ()-> Void){
+//        
+//       
+//        
+//        print("first task")
+//        
+//        closer()
+//        
+//        print("Second task")
+//        
+//    }
+//
+    
+//    func DownLoadStart(closer: @escaping(String)->Void){
+//        print("Download Start")
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 10){
+//            self.downLoadFinish()
+//            print("Download finish")
+//           // closer("mahesh")
+//            
+//        }
+//       // closer("mahesh1")
+//        
+//        print("Download Stayy")
+//        downloadimgDon = closer
+//    }
+//    
+//    func downLoadFinish(){
+//        downloadimgDon?("out side call")
+//    }
+    
+    
+//    func DownloadImge(imgUrl:URL , complectionHander: @escaping(UIImage?)->()){
+//        
+//        URLSession.shared.dataTask(with: imgUrl) { data, respnce, error in
+//            
+//            guard let data = data , let image = UIImage(data: data) else{
+//                complectionHander(nil)
+//                return
+//            }
+//            complectionHander(image)
+//            
+//            
+//        }.resume()
+//        
+//    }
+//    
+    
+    
+    
+    
     
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Save user data and release resources
@@ -284,7 +366,13 @@ extension UserListViewController: UITableViewDelegate, UITableViewDataSource {
         let fetchUserDetailUseCase = DefaultFetchUserDetailUseCase(apiService: apiService)
         let detailViewModel = UserDetailViewModel(fetchUserDetailUseCase: fetchUserDetailUseCase)
         let detailViewController = UserDetailViewController(viewModel: detailViewModel, userId: moviesID)
+      //  var controller = navigationController?.viewControllers
+      //  controller?.removeLast()
+        
+        
         navigationController?.pushViewController(detailViewController, animated: true)
+        //setViewControllers(controller! + [detailViewController], animated: true)
+        //pushViewController(detailViewController, animated: true)
         
         
     }

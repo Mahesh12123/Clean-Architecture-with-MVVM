@@ -6,3 +6,21 @@
 //
 
 import Foundation
+
+class User{
+    
+    private let fullName:String
+    private  let emil:String
+    
+    init(fullName: String, emil: String) {
+        self.fullName = fullName
+        self.emil = emil
+    }
+    
+    func fullNamewithEmail() -> String {
+        
+        return fullName + emil
+        
+    }
+    
+}

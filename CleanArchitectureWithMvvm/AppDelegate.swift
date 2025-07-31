@@ -32,6 +32,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("App launched")
         return true
     }
+    
+    func applicationDidReceiveMemoryWarning(_ application: UIApplication) {
+        print("ReceiveMemoryWarning")
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
            print("App will resign active")
        }

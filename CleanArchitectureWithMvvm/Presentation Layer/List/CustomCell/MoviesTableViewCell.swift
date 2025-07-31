@@ -89,6 +89,7 @@ class MoviesTableViewCell: UITableViewCell {
         // Example: Remote image URL
         let imageURL = "https://image.tmdb.org/t/p/w500\(moviesList.posterPath)"
         userImage.sd_setImage(with: URL(string: imageURL), placeholderImage: UIImage(named: "placeholder.png"))
+        
         nameLabel.text = moviesList.originalTitle
         releaseDate.text = "Release Date\(moviesList.releaseDate)"
         descriptionLabel.text = moviesList.overview
@@ -100,6 +101,7 @@ class MoviesTableViewCell: UITableViewCell {
         // Example: Remote image URL
         let imageURL = "https://image.tmdb.org/t/p/w500\(moviesList.posterPath)"
         userImage.sd_setImage(with: URL(string: imageURL), placeholderImage: UIImage(named: "placeholder.png"))
+        
         nameLabel.text = moviesList.originalTitle
         releaseDate.text = "Release Date\(moviesList.releaseDate)"
         descriptionLabel.text = moviesList.overview

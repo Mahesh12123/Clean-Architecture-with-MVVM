@@ -7,50 +7,52 @@
 
 
 import Foundation
+import UIKit
 
 // MARK: - MovieDetailModel
 struct MovieDetailModel: Codable {
-    let adult: Bool
+   // let adult: Bool
     let backdropPath: String
  //   let belongsToCollection: BelongsToCollection
-    let budget: Int
-    let genres: [Genre]
-    let homepage: String
-    let id: Int
-    let imdbID: String
-    let originCountry: [String]
+//    let budget: Int
+//    let genres: [Genre]
+//    let homepage: String
+//    let id: Int
+//    let imdbID: String
+//    let originCountry: [String]
     let originalLanguage, originalTitle, overview: String
-    let popularity: Double
-    let posterPath: String
-    let productionCompanies: [ProductionCompany]
+//    let popularity: Double
+//    let posterPath: String
+//    let productionCompanies: [ProductionCompany]
   //  let productionCountries: [ProductionCountry]
     let releaseDate: String
-    let revenue, runtime: Int
+//    let revenue, runtime: Int
   //  let spokenLanguages: [SpokenLanguage]
-    let status, tagline, title: String
-    let video: Bool
-    let voteAverage: Double
-    let voteCount: Int
+//    let status, tagline, title: String
+//    let video: Bool
+//    let voteAverage: Double
+//    let voteCount: Int
 
     enum CodingKeys: String, CodingKey {
-        case adult
+      //  case adult
         case backdropPath = "backdrop_path"
        // case belongsToCollection = "belongs_to_collection"
-        case budget, genres, homepage, id
-        case imdbID = "imdb_id"
-        case originCountry = "origin_country"
+      //  case budget, genres, homepage, id
+       // case imdbID = "imdb_id"
+     //   case originCountry = "origin_country"
         case originalLanguage = "original_language"
         case originalTitle = "original_title"
-        case overview, popularity
-        case posterPath = "poster_path"
-        case productionCompanies = "production_companies"
+        case overview
+        //, popularity
+    //    case posterPath = "poster_path"
+     //   case productionCompanies = "production_companies"
       //  case productionCountries = "production_countries"
         case releaseDate = "release_date"
-        case revenue, runtime
+     //   case revenue, runtime
       //  case spokenLanguages = "spoken_languages"
-        case status, tagline, title, video
-        case voteAverage = "vote_average"
-        case voteCount = "vote_count"
+     //   case status, tagline, title, video
+    //    case voteAverage = "vote_average"
+     //   case voteCount = "vote_count"
     }
 }
 
@@ -58,23 +60,23 @@ struct MovieDetailModel: Codable {
 //struct BelongsToCollection: Codable //
 
 // MARK: - Genre
-struct Genre: Codable {
-    let id: Int
-    let name: String
-}
+//struct Genre: Codable {
+//    let id: Int
+//    let name: String
+//}
 
 // MARK: - ProductionCompany
-struct ProductionCompany: Codable {
-    let id: Int
-    let logoPath, name, originCountry: String
-
-    enum CodingKeys: String, CodingKey {
-        case id
-        case logoPath = "logo_path"
-        case name
-        case originCountry = "origin_country"
-    }
-}
+//struct ProductionCompany: Codable {
+//    let id: Int
+//    let logoPath, name, originCountry: String
+//
+//    enum CodingKeys: String, CodingKey {
+//        case id
+//        case logoPath = "logo_path"
+//        case name
+//        case originCountry = "origin_country"
+//    }
+//}
 
 // MARK: - ProductionCountry
 //struct ProductionCountry: Codable {
@@ -96,3 +98,35 @@ struct ProductionCompany: Codable {
 //        case name
 //    }
 //}
+
+
+//struct Input {
+//    
+//    let num:[Int]
+//    var amountopnumber = 0
+//    var avg: Float = 0.0
+//    
+//  mutating func FindAvg() -> Float {
+//       let sum = num.reduce(0, +)
+//       amountopnumber = num.count
+//       avg = Float(sum)/Float(amountopnumber)
+//       return avg
+//        
+//    }
+//    
+//    
+//    
+//}
+//
+//var userNums:[Int] = []
+//var quantiy = readLine()
+//for i in 1...Int(quantiy!)! {
+//
+//    print("Please enter number \(i)",terminator: ": ")
+//    let num =  readLine()
+//    userNums.append(Int(num!)!)
+//
+//}
+//
+//var input1 = Input(num: userNums)
+//print("the average number is :\(input1.FindAvg())")

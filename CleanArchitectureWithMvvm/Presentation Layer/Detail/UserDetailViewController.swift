@@ -342,7 +342,22 @@ class UserDetailViewController: UIViewController {
                     self?.descriptionLabel.text = "\(userDetail.overview)"
                     self?.releaseDate.text = "Release Date = \(userDetail.releaseDate)"
                     let imageURL = "https://image.tmdb.org/t/p/w500\(userDetail.backdropPath)"
-                    self?.imageView.sd_setImage(with: URL(string: imageURL), placeholderImage: UIImage(named: "placeholder.png"))
+                    self?.imageView.sd_setImage(
+                        with: URL(string: imageURL),
+                        placeholderImage: nil,
+                        options: [],
+                        completed: { [weak self] _, error, _, _ in
+                            if let error = error {
+                                self?.activityIndicator.startAnimating()
+                                print("Failed to load image:", error.localizedDescription)
+                                
+                            } else {
+                                self?.activityIndicator.stopAnimating()
+                                print("Image loaded")
+                            }
+                        }
+                    )
+                    //sd_setImage(with: URL(string: imageURL), placeholderImage: UIImage(named: "placeholder.png"))
                 }
             }
             .store(in: &cancellables)

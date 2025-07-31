@@ -20,10 +20,19 @@ class DefaultFetchUserDetailUseCase: FetchUserDetailUseCase {
 
     func fetchUserDetail(userId: Int) -> AnyPublisher<MovieDetailModel, Error> {
         let endpoint = APIEndpoint.moviesDetail(id: userId)
+        print("endpoint == \(endpoint)")
         return apiService.request(endpoint: endpoint)
-            .map { (userDetail: MovieDetailModel) in
-                return userDetail
-            }
+//            .map { (userDetail: MovieDetailModel) in
+//                print("userDetail \(userDetail) ")
+//                return userDetail
+//            }
+        
+            .handleEvents(receiveOutput: { data in
+                print("✅ Received API response for: \(data)")
+            }, receiveCompletion: { completion in
+                print("📦 Completion: \(completion)")
+            })
+        
             .eraseToAnyPublisher()
     }
 }

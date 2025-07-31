@@ -36,7 +36,7 @@ class UserDetailViewModel {
                 }
             } receiveValue: { [weak self] userDetail in
                 self?.userDetail = userDetail
-              //  self?.isLoading = false
+               self?.isLoading = false
             }
             .store(in: &cancellables)
     }
